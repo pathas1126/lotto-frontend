@@ -24,10 +24,10 @@ const userLotto = {
 				data: {customGame: customGame},
 			});
 
-			const {status} = response;
+			const {status} = response.result;
 
 			if (status === statusEnum.SUCCESS.value) {
-				const {customGame} = response.result;
+				const {customGame} = response.result.data;
 				dispatch.userLotto.setCurrentTargetGame(customGame);
 			} else {
 				const {message} = response.result;

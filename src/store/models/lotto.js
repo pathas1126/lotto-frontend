@@ -48,13 +48,13 @@ const lotto = {
 				method: methodEnum.GET.value,
 			});
 
-			const {status} = response;
-
+			const {status} = response.result;
+			console.log(status);
 			if (status === statusEnum.SUCCESS.value) {
-				const {winningGame} = response.result;
+				const {winningGame} = response.result.data;
 				return dispatch.lotto.setLastWinningGame(winningGame);
 			} else {
-				const {message} = response;
+				const {message} = response.result;
 				dispatch.lotto.setLastWinningGameAsyncError(message);
 				return console.warn(
 					']===LottoTargetGame Data Fetching Error===[',
@@ -67,13 +67,13 @@ const lotto = {
 				method: methodEnum.GET.value,
 			});
 
-			const {status} = response;
+			const {status} = response.result;
 
 			if (status === statusEnum.SUCCESS.value) {
-				const {randomGame} = response.result;
+				const {randomGame} = response.result.data;
 				return dispatch.lotto.changeGame({newGame: randomGame, index});
 			} else {
-				const {message} = response;
+				const {message} = response.result;
 				dispatch.lotto.setChangeGameAsyncError(message);
 				return console.warn(']===RandomGame Data Fetching Error===[');
 			}
@@ -84,13 +84,13 @@ const lotto = {
 				method: methodEnum.GET.value,
 			});
 
-			const {status} = response;
+			const {status} = response.result;
 
 			if (status === statusEnum.SUCCESS.value) {
-				const {randomGames} = response.result;
+				const {randomGames} = response.result.data;
 				return dispatch.lotto.setLottoGames(randomGames);
 			} else {
-				const {message} = response;
+				const {message} = response.result;
 				dispatch.lotto.setLottoGamesAsyncError(message);
 				return console.warn(']===RandomGame Data Fetching Error===[');
 			}
